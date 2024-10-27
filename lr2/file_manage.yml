@@ -1,0 +1,5 @@
+---
+- hosts: my_servers
+  connection: local
+  roles:
+    - file_manage

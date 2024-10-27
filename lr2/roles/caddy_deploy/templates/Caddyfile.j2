@@ -1,0 +1,14 @@
+{{ domain_name }} {
+    root * /usr/share/caddy
+    file_server
+
+    # Обработка главной страницы
+    try_files {path} /index.html
+
+    log {
+        output file {{ log.file }}
+        format json
+        level {{ log.level }}
+    }
+}
+

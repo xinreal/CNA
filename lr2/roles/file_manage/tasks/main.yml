@@ -1,0 +1,28 @@
+---
+- name: Creating a test file with content
+  copy:
+    dest: "{{ ansible_env.HOME }}/test.txt"
+    content: |
+      Initial content of the file.
+
+- name: Change content of the file
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/test.txt"
+    line: "This content has been changed before deletion."
+
+- name: Read the test file content
+  shell: cat "{{ ansible_env.HOME }}/test.txt"
+  register: output_file_content
+  tags: read_file
+
+- name: Show file content
+  debug:
+    msg: "{{ output_file_content.stdout }}"
+  tags: read_file
+
+- name: Remove the test file
+  file:
+    path: "{{ ansible_env.HOME }}/test.txt"
+    state: absent
+  tags: remove_file
+

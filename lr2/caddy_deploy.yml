@@ -1,0 +1,7 @@
+---
+- name: Install and configure Caddy webserver  # Любое описание
+  hosts: my_servers  # Хосты из файла inventory/hosts, где будем выполнять наш плейбук
+  connection: local  # Аналог -c local, но для плейбуков
+  roles:
+    - caddy_deploy  # Собственно, роль для выполнения
+
